@@ -1,14 +1,13 @@
-package com.jsonyao.netty.quickstart;
+package com.jsonyao.netty.pkg1;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
- * Netty快速入门: 服务端业务处理器
+ * 测试Netty: 服务端业务处理器, 测试消息定长方式解决TCP拆包/粘包问题
  */
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class Pkg1NettyServerHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 通道激活方法
@@ -38,22 +37,12 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        // 1. 获取TCP包缓冲区数据
-        ByteBuf byteBuf = (ByteBuf) msg;
-
-        // 2. 根据缓冲数据大小构造字节数组
-        byte[] bytes = new byte[byteBuf.readableBytes()];
-
-        // 3. 读取到缓冲区数据到字节数组中
-        byteBuf.readBytes(bytes);
-
-        // 4. 使用UTF-8编码解码字节数组成字符串
-        String body = new String(bytes, "utf-8");
+        // 1. 使用了Netty String解码器后, 可以直接转换成String类型
+        String body = (String) msg;
         System.err.println("Netty server: " + body);
 
-        // 5. 构造响应体给客户端 => 测试与客户端的交互
-        String response = "Netty server ack: " + body;
-        ctx.writeAndFlush(Unpooled.copiedBuffer(response.getBytes()));
+        // 2. 构造响应体给客户端 => 测试与客户端的交互
+        ctx.writeAndFlush(Unpooled.copiedBuffer(body.getBytes()));
     }
 
     /**
