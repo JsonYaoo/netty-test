@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
  * Netty整合SpringBoot: 客户端配置类
  */
 @Configuration
-@ComponentScan(basePackages = {"com.jsonyao.netty.client"})
+// 因为还需要扫描com.jsonyao.netty.common.scanner.NettyProcessBeanScanner
+@ComponentScan(basePackages = {"com.jsonyao.netty"})
 public class MainConfig {
 
 	

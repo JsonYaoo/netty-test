@@ -1,8 +1,8 @@
 package com.jsonyao.netty.server;
 
-import org.springframework.boot.WebApplicationType;
+import com.jsonyao.netty.listener.ApplicationListenerReadyEvent;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Netty整合SpringBoot: 服务端应用
@@ -11,9 +11,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class NettyServerApplication {
 
 	public static void main(String[] args) {
-	    new SpringApplicationBuilder(NettyServerApplication.class)
-                .web(WebApplicationType.SERVLET)
-                .run(args);
+		SpringApplication springApplication = new SpringApplication(NettyServerApplication.class);
+		springApplication.addListeners(new ApplicationListenerReadyEvent());
+		springApplication.run(args);
 	}
 
 }

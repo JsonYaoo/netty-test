@@ -22,7 +22,8 @@ import java.io.IOException;
 /**
  * Netty整合SpringBoot: 服务端
  */
-@Component
+// 不再交由Spring管理, 因为如果交由Spring管理, 调用构造方法时会调用connect方法会同步阻塞SpringBoot的主线程, 导致SpringBoot应用起不来
+//@Component
 public class Server {
 
 	public Server(){

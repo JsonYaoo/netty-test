@@ -17,7 +17,11 @@ public class UserReturnService {
      */
     @Cmd(cmd = "save-return")
     public void saveReturn(MessageModule.ResultType resultType, byte[] data){
-
+        if(MessageModule.ResultType.SUCCESS.equals(resultType)) {
+            System.err.println("处理 user save 方法成功!");
+        } else {
+            System.err.println("处理 user save 方法失败!");
+        }
     }
 
     /**
@@ -25,6 +29,10 @@ public class UserReturnService {
      */
     @Cmd(cmd = "update-return")
     public void updateReturn(MessageModule.ResultType resultType, byte[] data){
-
+        if(MessageModule.ResultType.SUCCESS.equals(resultType)) {
+            System.err.println("处理 user update 方法成功!");
+        } else {
+            System.err.println("处理 user update 方法失败!");
+        }
     }
 }
