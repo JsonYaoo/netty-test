@@ -9,6 +9,9 @@
     <modules>
         <module>netty-part-one</module>
         <module>netty-part-two</module>
+        <module>netty-common</module>
+        <module>netty-client</module>
+        <module>netty-server</module>
     </modules>
     <packaging>pom</packaging>
 
