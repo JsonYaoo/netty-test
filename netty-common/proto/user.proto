@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.jsonyao.netty.common.protobuf";
+option java_outer_classname = "UserModule";
+
+message User {
+    string userId = 1;
+    string userName = 2;
+}
