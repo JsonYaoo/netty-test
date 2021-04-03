@@ -12,6 +12,8 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class MessageTask4Request implements Runnable{
 
+    private static final String RETURN_SUFFIX = "-return";
+
     /**
      * Server Channel上线文实例
      */
@@ -41,6 +43,6 @@ public class MessageTask4Request implements Runnable{
         Result<?> result = (Result<?>) invoker.invoke(data);
 
         // 响应客户端 => 必须是MessageModule.Message对象
-        ctx.writeAndFlush(MessageBuilder.getResponseMessage(module, cmd, result.getResultType(), result.getContent()));
+        ctx.writeAndFlush(MessageBuilder.getResponseMessage(module + RETURN_SUFFIX, cmd + RETURN_SUFFIX, result.getResultType(), result.getContent()));
     }
 }
