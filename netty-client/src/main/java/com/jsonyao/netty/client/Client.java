@@ -1,10 +1,15 @@
 package com.jsonyao.netty.client;
 
+import com.jsonyao.netty.common.protobuf.MessageModule;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Executors;
@@ -36,8 +41,12 @@ public class Client {
 			    .option(ChannelOption.TCP_NODELAY, true)
 			    .handler(new ChannelInitializer<SocketChannel>() {
 					@Override
-					public void initChannel(SocketChannel ch) throws Exception {
-
+					public void initChannel(SocketChannel sc) throws Exception {
+						sc.pipeline().addLast(new ProtobufVarint32FrameDecoder());
+						sc.pipeline().addLast(new ProtobufDecoder(MessageModule.Message.getDefaultInstance()));
+						sc.pipeline().addLast(new ProtobufVarint32LengthFieldPrepender());
+						sc.pipeline().addLast(new ProtobufEncoder());
+						sc.pipeline().addLast(new ClientHandler());
 					}
 			    });
 		    // 发起异步连接操作
