@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * JBoss Marshalling快速入门: 服务端
  */
-public class Server {
+public class MarshallingServer {
 
     public static void main(String[] args) throws InterruptedException {
         // boosGroup一般写1
@@ -36,7 +36,7 @@ public class Server {
                         sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 
                         // 取到管道, 底层是双向链表
-                        sc.pipeline().addLast(new ServerHandler());
+                        sc.pipeline().addLast(new MarshallingServerHandler());
                     }
                 });
 

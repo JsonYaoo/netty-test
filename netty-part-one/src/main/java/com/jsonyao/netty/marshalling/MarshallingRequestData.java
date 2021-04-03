@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * JBoss Marshalling快速入门: 请求对象
  */
-public class RequestData implements Serializable {
+public class MarshallingRequestData implements Serializable {
 
     private static final long serialVersionUID = 5977835490688258851L;
 

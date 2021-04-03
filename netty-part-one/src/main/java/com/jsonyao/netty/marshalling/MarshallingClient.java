@@ -12,13 +12,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * JBoss Marshalling快速入门: 客户端
  */
-public class Client {
+public class MarshallingClient {
 
     public static void main(String[] args) throws Exception {
         // 客户端只需要一个线程组就可 => 不是Reactor模型
@@ -37,7 +35,7 @@ public class Client {
                         sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 
                         // 取到管道, 底层是双向链表
-                        sc.pipeline().addLast(new ClientHandler());
+                        sc.pipeline().addLast(new MarshallingClientHandler());
                     }
                 });
 
@@ -47,10 +45,10 @@ public class Client {
         // 使用ChannelFuture对象发送消息 <= 建立连接后
         Channel channel = cf.channel();
         for (int i = 0; i < 100; i++) {
-            RequestData requestData = new RequestData();
-            requestData.setId("" + i);
-            requestData.setName("我是消息" + i);
-            requestData.setRequestMessage("内容" + i);
+            MarshallingRequestData marshallingRequestData = new MarshallingRequestData();
+            marshallingRequestData.setId("" + i);
+            marshallingRequestData.setName("我是消息" + i);
+            marshallingRequestData.setRequestMessage("内容" + i);
 
             // 发送图片文件
             String path = System.getProperty("user.dir") + File.separatorChar + "netty-part-one" + File.separatorChar + "source" + File.separatorChar + "001.jpg";
@@ -59,10 +57,10 @@ public class Client {
             byte[] fileData = new byte[fis.available()];
             fis.read(fileData);
             fis.close();
-            requestData.setAttachment(GzipUtils.gzip(fileData));
+            marshallingRequestData.setAttachment(GzipUtils.gzip(fileData));
 
             // 写到缓冲区并刷到网络中
-            channel.writeAndFlush(requestData);
+            channel.writeAndFlush(marshallingRequestData);
         }
 
         // 同步关闭, 释放资源
