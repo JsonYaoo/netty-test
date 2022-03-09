@@ -3,7 +3,7 @@ package com.jsonyao.io.fileio;
 import java.io.*;
 
 /**
- * 测试 FileReader: 字符流-节点流
+ * 测试 FileReader: 字节流-节点流
  */
 public class FileInputOutTest {
 
