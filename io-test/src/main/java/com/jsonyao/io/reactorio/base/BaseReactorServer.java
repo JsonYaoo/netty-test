@@ -1,4 +1,4 @@
-package com.jsonyao.io.nio;
+package com.jsonyao.io.reactorio.base;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Reactor 原型
  */
-public class ReactorBaseServerTest {
+public class BaseReactorServer {
 
     interface ChannelHandler {
         void onRead(SocketChannel channel) throws Exception;
