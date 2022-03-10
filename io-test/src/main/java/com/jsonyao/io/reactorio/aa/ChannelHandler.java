@@ -34,7 +34,8 @@ public class ChannelHandler implements Runnable {
                 send();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Waring! A Client has been closed...");
+            closeChannel();
         }
     }
 
