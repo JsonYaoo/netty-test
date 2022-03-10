@@ -5,6 +5,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * 7、工作状态
+ */
 public class WorkState implements HandlerState {
 
     private String readResult;

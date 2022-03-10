@@ -6,7 +6,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 /**
- * ChannelHandler
+ * 3、ChannelHandler
  */
 public class ChannelHandler implements Runnable {
 

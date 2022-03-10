@@ -7,7 +7,7 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * 读取状态
+ * 5、读取状态
  */
 public class ReadState implements HandlerState {
 

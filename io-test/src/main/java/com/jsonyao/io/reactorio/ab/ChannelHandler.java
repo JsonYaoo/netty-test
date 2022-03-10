@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ChannelHandler
+ * 3、ChannelHandler
  */
 public class ChannelHandler implements Runnable {
 

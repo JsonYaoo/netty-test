@@ -6,6 +6,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * 7、返回状态
+ */
 public class WriteState implements HandlerState {
 
     @Override

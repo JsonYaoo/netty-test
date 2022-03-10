@@ -6,7 +6,7 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * 状态
+ * 5、状态
  */
 public interface HandlerState {
 

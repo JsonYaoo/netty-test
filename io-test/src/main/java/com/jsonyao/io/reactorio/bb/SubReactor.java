@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.locks.LockSupport;
 
+/**
+ * 3、子Reactor
+ */
 public class SubReactor implements Runnable {
 
     private final ServerSocketChannel serverSocketChannel;
